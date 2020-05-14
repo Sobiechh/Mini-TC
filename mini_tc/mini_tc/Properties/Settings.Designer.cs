@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace totalcmd.Properties
+namespace mini_tc.Properties
 {
 
 

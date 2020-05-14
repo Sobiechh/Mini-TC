@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace totalcmd
+namespace mini_tc
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml

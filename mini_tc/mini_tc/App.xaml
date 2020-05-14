@@ -1,7 +1,7 @@
-﻿<Application x:Class="totalcmd.App"
+﻿<Application x:Class="mini_tc.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:totalcmd"
+             xmlns:local="clr-namespace:mini_tc"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
