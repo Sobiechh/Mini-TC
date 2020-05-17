@@ -1,20 +1,23 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Menu.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        /// <summary>
-        /// Zdarzenie uruchamiane, gdy dowolna właściwość zmienia swoją wartość
-        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void onPropertyChanged(string propertyName)
+        protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName]string propertyName = null)
         {
-            if (PropertyChanged != null)
+            if (!EqualityComparer<T>.Default.Equals(field, newValue))
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                field = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
             }
+            return false;
         }
     }
+
 }
