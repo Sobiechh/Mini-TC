@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mini_tc.Model
 {
-    enum SelectedWindow //ktore okno
+    enum SelectedWindow //which window
     {
         left,
         right

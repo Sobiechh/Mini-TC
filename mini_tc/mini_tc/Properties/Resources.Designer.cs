@@ -97,20 +97,20 @@ namespace mini_tc.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu ....
-        /// </summary>
-        public static string ParrentDirectory {
-            get {
-                return ResourceManager.GetString("ParrentDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Path.
         /// </summary>
         public static string PathLabel {
             get {
                 return ResourceManager.GetString("PathLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu ....
+        /// </summary>
+        public static string PreviousDirectory {
+            get {
+                return ResourceManager.GetString("PreviousDirectory", resourceCulture);
             }
         }
     }

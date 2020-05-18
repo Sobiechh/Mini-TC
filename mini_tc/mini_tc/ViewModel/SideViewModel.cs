@@ -16,6 +16,7 @@ namespace mini_tc.ViewModel
     class SideViewModel : BaseViewModel
     {
         #region Properties
+
         private string _currentPath;
         public string CurrentPath
         {
@@ -49,46 +50,115 @@ namespace mini_tc.ViewModel
             {
                 _selectedDrive = value;
                 OnPropertyChanged(nameof(SelectedDrive));
+                CurrentPath = _selectedDrive;
                 UpdateCurrentPathContent();
             }
         }
-        #endregion
 
+        #endregion
 
         #region Constructor
         public SideViewModel()
         {
-            //get drivers
-            AvailableDrives = new ObservableCollection<string>(Directory.GetLogicalDrives().ToList());
-            Console.WriteLine(AvailableDrives);
+            UpdateAvailableDrives();
+            CurrentPathContent = new ObservableCollection<string>();
             //any func + lambda
             //x.Contains("C")).First() always disk containt C at first
-            SelectedDrive = AvailableDrives.Any(x => x.Contains("s ")) ? AvailableDrives.Where(x => x.Contains("C")).First() : AvailableDrives.First();
-            Console.WriteLine(SelectedDrive);
-            UpdateCurrentPathContent();
+            SelectedDrive = AvailableDrives.Any(x => x.Contains("C")) ? AvailableDrives.Where(x => x.Contains("C")).First() : AvailableDrives.First();
+
+            DropDownOpen = new RelayCommand(DropDownOpenExecute, arg => true);
+            ItemDoubleClick = new RelayCommand(ItemDoubleClickExecute, arg => true);
+            ItemEnterKey = new RelayCommand(ItemEnterKeyExecute, ItemEnterKeyCanExecute);
         }
         #endregion
 
+        #region Commands
+        public ICommand DropDownOpen { get; set; }
+        public ICommand ItemDoubleClick { get; set; }
+        public ICommand ItemEnterKey { get; set; }
+
+        private void DropDownOpenExecute(object obj) => UpdateAvailableDrives();
+
+        private void ItemDoubleClickExecute(object obj) => EnterDirectory();
+
+        private void ItemEnterKeyExecute(object obj) => EnterDirectory();
+        private bool ItemEnterKeyCanExecute(object obj) => SelectedPath != null; // == throw except
+        #endregion
+
+        #region functionality
+        private void EnterDirectory()
+        {
+            if (SelectedPath.StartsWith(Resources.DriveSign))
+            {
+                CurrentPath = Path.Combine(CurrentPath, SelectedPath.Substring(4)); //delete 4 chars path
+                UpdateCurrentPathContent();
+            }
+            else if (SelectedPath == Resources.PreviousDirectory) //back
+            {
+                CurrentPath = Path.GetDirectoryName(CurrentPath);
+                UpdateCurrentPathContent();
+            }
+        }
+        private void UpdateAvailableDrives()
+        {
+            AvailableDrives = new ObservableCollection<string>(Directory.GetLogicalDrives().ToList());
+        }
 
         private void UpdateCurrentPathContent()
         {
-            //help
-            //Console.WriteLine(SelectedDrive);
-            CurrentPathContent = new ObservableCollection<string>();
-            foreach (var dir in Directory.GetDirectories(SelectedDrive)) //each dir add
+            CurrentPathContent.Clear();
+            if (!AvailableDrives.Contains(CurrentPath))
             {
-                //test with all <D> prefix
-                CurrentPathContent.Add("<D> " + Path.GetFileName(dir));
+                CurrentPathContent.Add("...");
             }
-            foreach (var file in Directory.GetFiles(SelectedDrive))
+            //foreach (var dir in GetDirectories()) test no arg
+            foreach (var dir in GetDirectories(CurrentPath)) //where we are
             {
-                CurrentPathContent.Add(Path.GetFileName(file)); //each file add
+                CurrentPathContent.Add(Resources.DriveSign + Path.GetFileName(dir));
+            }
+            foreach (var file in GetFiles(CurrentPath))
+            {
+                CurrentPathContent.Add(Path.GetFileName(file));
             }
         }
 
-        private void UpdateAvailabeDrives()
+        private List<string> GetFiles(string path) //need current path to detect file location
         {
-
+            var files = new List<string>();
+            try
+            {
+                foreach (var file in Directory.GetFiles(path))
+                {
+                    files.Add(file);
+                }
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return files;
         }
+
+        private List<string> GetDirectories(string path)
+        {
+            var directories = new List<string>();
+            try
+            {
+                foreach (var directory in Directory.GetDirectories(path))
+                {
+                    directories.Add(directory);
+                }
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return directories;
+        }
+
+        //get path with lamda func, substring del (<C/D/E>)
+        public string GetCorrectSelectedPath() => SelectedPath.StartsWith(Resources.DriveSign) ? SelectedPath.Substring(Resources.DriveSign.Length) : SelectedPath;
+
+        #endregion
     }
 }

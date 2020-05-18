@@ -18,9 +18,9 @@ namespace mini_tc.View
     /// <summary>
     /// Logika interakcji dla klasy PanelTC.xaml
     /// </summary>
-    public partial class SidePanel : UserControl
+    public partial class SidePanel : UserControl, ISidePanel //ISidePanel interface
     {
-        #region Dependency
+        #region Dependencies
         protected static readonly DependencyProperty CurrentPathProperty = DependencyProperty.Register(
             nameof(CurrentPath), 
             typeof(string), 
@@ -79,7 +79,7 @@ namespace mini_tc.View
 
         #endregion
 
-        #region Prop
+        #region Props
         public string CurrentPath
         {
             get { return (string)GetValue(CurrentPathProperty); }
@@ -127,20 +127,32 @@ namespace mini_tc.View
 
         public ICommand SelectionChange
         {
-            get { return (ICommand)GetValue(SelectionChangeProperty); }
-            set { SetValue(SelectionChangeProperty, value); }
+            get { 
+                return (ICommand)GetValue(SelectionChangeProperty); 
+            }
+            set { 
+                SetValue(SelectionChangeProperty, value); 
+            }
         }
         
         public ICommand ItemDoubleClick
         {
-            get { return (ICommand)GetValue(ItemDoubleClickProperty); }
-            set { SetValue(ItemDoubleClickProperty, value); }
+            get { 
+                return (ICommand)GetValue(ItemDoubleClickProperty); 
+            }
+            set { 
+                SetValue(ItemDoubleClickProperty, value); 
+            }
         }
         
         public ICommand ItemEnterKey
         {
-            get { return (ICommand)GetValue(ItemEnterKeyProperty); }
-            set { SetValue(ItemEnterKeyProperty, value); }
+            get { 
+                return (ICommand)GetValue(ItemEnterKeyProperty); 
+            }
+            set { 
+                SetValue(ItemEnterKeyProperty, value); 
+            }
         }
         #endregion
     }

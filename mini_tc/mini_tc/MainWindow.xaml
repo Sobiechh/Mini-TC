@@ -12,14 +12,16 @@
         Title="Piotr Sobieszczyk miniCommander" Height="620" Width="1100">
 
     <Window.Resources>
-        <vm:MainViewModel x:Key="MainViewModel"/>
-        <vm:SideViewModel x:Key="SideViewModel"/>
+        
+        <vm:MainViewModel x:Key="mainViewModel"/>
+        
     </Window.Resources>
 
     <Grid>
         <Grid.DataContext>
             <vm:MainViewModel/>
         </Grid.DataContext>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
             <RowDefinition Height="1*"/>
@@ -32,16 +34,18 @@
             </Grid.ColumnDefinitions>
             
             <!--LEFT SIDE-->
-            <controls:SidePanel Grid.Column="0" CurrentPath="{Binding LeftPanel.CurrentPath}" AvailableDrives="{Binding LeftPanel.AvailableDrives}" 
-                              CurrentPathContent="{Binding LeftPanel.CurrentPathContent}" SelectedPath="{Binding LeftPanel.SelectedPath,Mode=TwoWay}" 
-                              SelectedDrive="{Binding LeftPanel.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding LeftPanel.DropDownOpen}" 
-                              SelectionChange="{Binding LeftSelectionChange}" ItemDoubleClick="{Binding LeftPanel.ItemDoubleClick}" ItemEnterKey="{Binding LeftPanel.ItemEnterKey}"/>
+            <controls:SidePanel Grid.Column="0" CurrentPath="{Binding LeftSide.CurrentPath}" AvailableDrives="{Binding LeftSide.AvailableDrives}" 
+                              CurrentPathContent="{Binding LeftSide.CurrentPathContent}" SelectedPath="{Binding LeftSide.SelectedPath,Mode=TwoWay}" 
+                              SelectedDrive="{Binding LeftSide.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding LeftSide.DropDownOpen}" 
+                              SelectionChange="{Binding LeftSelectionChange}" ItemDoubleClick="{Binding LeftSide.ItemDoubleClick}" 
+                              ItemEnterKey="{Binding LeftSide.ItemEnterKey}"/>
 
             <!--RIGHT SIDE-->
-            <controls:SidePanel Grid.Column="1" CurrentPath="{Binding RightPanel.CurrentPath}" AvailableDrives="{Binding RightPanel.AvailableDrives}" 
-                              CurrentPathContent="{Binding RightPanel.CurrentPathContent}" SelectedPath="{Binding RightPanel.SelectedPath,Mode=TwoWay}" 
-                              SelectedDrive="{Binding RightPanel.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding RightPanel.DropDownOpen}" 
-                              SelectionChange="{Binding RightSelectionChange}" ItemDoubleClick="{Binding RightPanel.ItemDoubleClick}" ItemEnterKey="{Binding RightPanel.ItemEnterKey}"/>
+            <controls:SidePanel Grid.Column="1" CurrentPath="{Binding RightSide.CurrentPath}" AvailableDrives="{Binding RightSide.AvailableDrives}" 
+                              CurrentPathContent="{Binding RightSide.CurrentPathContent}" SelectedPath="{Binding RightSide.SelectedPath,Mode=TwoWay}" 
+                              SelectedDrive="{Binding RightSide.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding RightSide.DropDownOpen}" 
+                              SelectionChange="{Binding RightSelectionChange}" ItemDoubleClick="{Binding RightPanel.ItemDoubleClick}" 
+                              ItemEnterKey="{Binding RightSide.ItemEnterKey}"/>
         </Grid>
 
         <Button x:Name="CopyButton" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Height="25" Width="60" Margin="10"
