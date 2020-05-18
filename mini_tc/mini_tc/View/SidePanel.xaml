@@ -16,7 +16,7 @@
         <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
             <!-- Path binding -->
             <Label Content="{Binding Source={x:Static resx:Resources.PathLabel}}"/>
-            <TextBox VerticalContentAlignment="Center" IsReadOnly="True" Width="300" Text="{Binding CurrentPath,ElementName=SidePanelControl}"/>
+            <TextBox VerticalContentAlignment="Center" IsReadOnly="True" Width="400" Text="{Binding CurrentPath,ElementName=SidePanelControl}"/>
         </StackPanel>
 
         <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -36,7 +36,7 @@
 
         </StackPanel>
 
-        <ListBox Height="600" SelectionMode="Single" ItemsSource="{Binding CurrentPathContent,ElementName=SidePanelControl}" SelectedItem="{Binding SelectedPath,ElementName=SidePanelControl}">
+        <ListBox Height="400" SelectionMode="Single" ItemsSource="{Binding CurrentPathContent,ElementName=SidePanelControl}" SelectedItem="{Binding SelectedPath,ElementName=SidePanelControl}">
             
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
