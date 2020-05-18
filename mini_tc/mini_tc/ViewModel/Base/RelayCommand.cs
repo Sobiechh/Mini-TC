@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MiniTC.ViewModel.BaseClass
+namespace mini_tc.ViewModel.Base
 {
     //tworzymy klasę uniwesalną określającą czym jest dowolne polecenie, gdzie 
     //zachowanie tego polecenia wstrzykujemy poprzez metody będące argumentami konstruktora

@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniTC.ViewModel.BaseClass
+namespace mini_tc.ViewModel.Base
 {
-    class ViewModelBase : INotifyPropertyChanged
+    class BaseViewModel : INotifyPropertyChanged
     {
         //zdarzenie informujące o zmiane własności w obiekcie ViewModelu
         public event PropertyChangedEventHandler PropertyChanged;

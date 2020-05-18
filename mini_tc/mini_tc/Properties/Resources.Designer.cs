@@ -22,7 +22,7 @@ namespace mini_tc.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace mini_tc.Properties {
         /// Zwraca buforowane wystąpienie ResourceManager używane przez tę klasę.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mini_tc.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace mini_tc.Properties {
         ///   przypadków przeszukiwania zasobów za pomocą tej klasy zasobów wymagającej zdefiniowania typu.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace mini_tc.Properties {
         /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Copy.
         /// </summary>
-        internal static string ContentCopyButton {
+        public static string ContentCopyButton {
             get {
                 return ResourceManager.GetString("ContentCopyButton", resourceCulture);
             }
@@ -72,18 +72,36 @@ namespace mini_tc.Properties {
         /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Drive.
         /// </summary>
-        internal static string DriveLabel {
+        public static string DriveLabel {
             get {
                 return ResourceManager.GetString("DriveLabel", resourceCulture);
             }
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu ....
+        /// </summary>
+        public static string ParrentDirectory {
+            get {
+                return ResourceManager.GetString("ParrentDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Path.
         /// </summary>
-        internal static string PathLabel {
+        public static string PathLabel {
             get {
                 return ResourceManager.GetString("PathLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu string.
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

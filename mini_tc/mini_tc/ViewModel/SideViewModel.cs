@@ -4,21 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Collections.ObjectModel;
+using mini_tc.Properties;
+using System.Windows.Input;
 
 
 namespace mini_tc.ViewModel
 {
-    class SideViewModel : MainViewModel
-    {
-        using ViewModel.Base;
+    using System.Collections.ObjectModel;
+    using ViewModel.Base;
 
+    class SideViewModel : BaseViewModel
+    {
         private string _currentPath;
         public string CurrentPath
         {
             get { return _currentPath; }
             set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); }
         }
+
         private ObservableCollection<string> _availableDrives;
         public ObservableCollection<string> AvailableDrives
         {
