@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mini_tc"
+        xmlns:vm="clr-namespace:mini_tc.ViewModel"
+        xmlns:resx="clr-namespace:mini_tc.Properties"
+        xmlns:controls="clr-namespace:mini_tc.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="1100">
 
+    <Window.Resources>
+        <vm:MainViewModel x:Key="mainViewModel"/>
+        <vm:SideViewModel x:Key="panelTcViewModel"/>
+    </Window.Resources>
 
     <Grid Margin="0,0,-0.4,-3.6" Name="MainGrid" Background="#FFF">
         <Grid.ColumnDefinitions>

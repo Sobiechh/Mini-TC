@@ -1,23 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Menu.ViewModel
+namespace MiniTC.ViewModel.BaseClass
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    class ViewModelBase : INotifyPropertyChanged
     {
+        //zdarzenie informujące o zmiane własności w obiekcie ViewModelu
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName]string propertyName = null)
+        //metoda zgłaszjąca zmiany w własościach podanych jako argumenty
+        protected void OnPropertyChanged(params string[] namesOfProperties)
         {
-            if (!EqualityComparer<T>.Default.Equals(field, newValue))
+            //jeśli ktoś obserwuje zdarzenie PropertyChanged
+            if (PropertyChanged != null)
             {
-                field = newValue;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-                return true;
+                //wywołanie zdarzenia dla wszsytkich zgłoszonych do aktualizacji własności
+                //w ten sposób powiadamiamy widok o zmianie stanu własności
+                //w modelu widoku
+                foreach (var prop in namesOfProperties)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(prop));
+                }
             }
-            return false;
         }
     }
-
 }

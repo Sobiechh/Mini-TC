@@ -20,10 +20,10 @@ namespace mini_tc
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel();
         }
     }
 }

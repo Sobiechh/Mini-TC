@@ -58,6 +58,8 @@
     <Compile Include="Model\SelectedWindow.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SideViewModel.cs" />
     <Compile Include="View\SideView.xaml.cs">
       <DependentUpon>SideView.xaml</DependentUpon>
     </Compile>
