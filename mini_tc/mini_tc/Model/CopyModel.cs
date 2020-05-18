@@ -14,7 +14,7 @@ namespace mini_tc.Model
             if (attribute.HasFlag(FileAttributes.Directory))
             {
                 target = Path.Combine(target, Path.GetFileName(source));
-                DirectoryCopy(source, target);
+                //DirectoryCopy(source, target);
             }
             else
             {
@@ -41,18 +41,5 @@ namespace mini_tc.Model
             catch (UnauthorizedAccessException) { return; }
         }
 
-
-        private void DirectoryCopy(string source, string target)
-        {
-            var dir = new DirectoryInfo(source);
-            if (!dir.Exists)
-                throw new DirectoryNotFoundException();
-            DirectoryInfo[] dirs;
-            try
-            {
-                dirs = dir.GetDirectories();
-            }
-            catch (UnauthorizedAccessException) { return; }
-        }
     }
 }

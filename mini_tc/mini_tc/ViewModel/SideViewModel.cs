@@ -66,31 +66,34 @@ namespace mini_tc.ViewModel
             //x.Contains("C")).First() always disk containt C at first
             SelectedDrive = AvailableDrives.Any(x => x.Contains("C")) ? AvailableDrives.Where(x => x.Contains("C")).First() : AvailableDrives.First();
 
-            DropDownOpen = new RelayCommand(DropDownOpenExecute, arg => true);
-            ItemDoubleClick = new RelayCommand(ItemDoubleClickExecute, arg => true);
+            DropDownOpen = new RelayCommand(DropDownOpenExecute, argument => true);
+            ItemDoubleClick = new RelayCommand(ItemDoubleClickExecute, argument => true);
             ItemEnterKey = new RelayCommand(ItemEnterKeyExecute, ItemEnterKeyCanExecute);
         }
         #endregion
 
         #region Commands
-        public ICommand DropDownOpen { get; set; }
         public ICommand ItemDoubleClick { get; set; }
         public ICommand ItemEnterKey { get; set; }
 
-        private void DropDownOpenExecute(object obj) => UpdateAvailableDrives();
+        public ICommand DropDownOpen { get; set; }
 
-        private void ItemDoubleClickExecute(object obj) => EnterDirectory();
+        private void DropDownOpenExecute(object o) => UpdateAvailableDrives();
 
-        private void ItemEnterKeyExecute(object obj) => EnterDirectory();
-        private bool ItemEnterKeyCanExecute(object obj) => SelectedPath != null; // == throw except
+        private void ItemDoubleClickExecute(object o) => EnterDirectory();
+
+        private void ItemEnterKeyExecute(object o) => EnterDirectory();
+        private bool ItemEnterKeyCanExecute(object o) => SelectedPath != null; // == throw except
         #endregion
 
-        #region functionality
+
+        #region func
         private void EnterDirectory()
         {
+            if (SelectedPath == null) return;//unless exception
             if (SelectedPath.StartsWith(Resources.DriveSign))
             {
-                CurrentPath = Path.Combine(CurrentPath, SelectedPath.Substring(4)); //delete 4 chars path
+                CurrentPath = Path.Combine(CurrentPath, SelectedPath.Substring(3)); //delete 4 chars path
                 UpdateCurrentPathContent();
             }
             else if (SelectedPath == Resources.PreviousDirectory) //back
@@ -104,15 +107,14 @@ namespace mini_tc.ViewModel
             AvailableDrives = new ObservableCollection<string>(Directory.GetLogicalDrives().ToList());
         }
 
-        private void UpdateCurrentPathContent()
+        public void UpdateCurrentPathContent()
         {
             CurrentPathContent.Clear();
             if (!AvailableDrives.Contains(CurrentPath))
             {
-                CurrentPathContent.Add("...");
+                CurrentPathContent.Add(Resources.PreviousDirectory);
             }
-            //foreach (var dir in GetDirectories()) test no arg
-            foreach (var dir in GetDirectories(CurrentPath)) //where we are
+            foreach (var dir in GetDirectories(CurrentPath))
             {
                 CurrentPathContent.Add(Resources.DriveSign + Path.GetFileName(dir));
             }
@@ -124,40 +126,40 @@ namespace mini_tc.ViewModel
 
         private List<string> GetFiles(string path) //need current path to detect file location
         {
-            var files = new List<string>();
+            var files_list = new List<string>();
             try
             {
                 foreach (var file in Directory.GetFiles(path))
                 {
-                    files.Add(file);
+                    files_list.Add(file);
                 }
-            }
+            } // no access allowed
             catch (UnauthorizedAccessException e)
             {
                 Console.WriteLine(e.Message);
             }
-            return files;
+            return files_list;
         }
 
         private List<string> GetDirectories(string path)
         {
-            var directories = new List<string>();
+            var dirs_list = new List<string>();
             try
             {
                 foreach (var directory in Directory.GetDirectories(path))
                 {
-                    directories.Add(directory);
+                    dirs_list.Add(directory);
                 }
-            }
+            } // no access allowed
             catch (UnauthorizedAccessException e)
             {
                 Console.WriteLine(e.Message);
             }
-            return directories;
+            return dirs_list;
         }
 
         //get path with lamda func, substring del (<C/D/E>)
-        public string GetCorrectSelectedPath() => SelectedPath.StartsWith(Resources.DriveSign) ? SelectedPath.Substring(Resources.DriveSign.Length) : SelectedPath;
+        public string GetSelectedPath() => SelectedPath.StartsWith(Resources.DriveSign) ? SelectedPath.Substring(Resources.DriveSign.Length) : SelectedPath;
 
         #endregion
     }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
-
-using mini_tc.Properties;
-using System.Windows.Input;
-//using Base;
+﻿//using Base;
 //czemu nie dziala tutaj?
 
 namespace mini_tc.ViewModel
 {
-    using Base; // Jeżeli Pan Doktor to widzi to proszę o wytłumaczenie czemu using tutaj
+    using System.IO;
+    using mini_tc.Properties;
+    using System.Windows.Input;
+    using Base;
     using mini_tc.Model;
+    // Jeżeli Pan Doktor to widzi to proszę o wytłumaczenie czemu using tutaj
 
     class MainViewModel : BaseViewModel
     {
@@ -39,6 +38,8 @@ namespace mini_tc.ViewModel
             _leftSide = new SideViewModel();
             _rightSide = new SideViewModel();
 
+            copyModel = new CopyModel();
+
             Copy = new RelayCommand(CopyExecute, CopyCanExecute);
             LeftSelectionChange = new RelayCommand(LeftSelectionChangeExecute, arg => true);
             RightSelectionChange = new RelayCommand(RightSelectionChangeExecute, arg => true);
@@ -61,18 +62,28 @@ namespace mini_tc.ViewModel
 
             string source = "";
             string target = "";
+            //LEFT SIDE
             if (LeftSide.SelectedPath != null)
             {
-                source = Path.Combine(LeftSide.CurrentPath, LeftSide.GetCorrectSelectedPath());
+                source = Path.Combine(LeftSide.CurrentPath, LeftSide.GetSelectedPath());
                 target = Path.GetFullPath(RightSide.CurrentPath);
+            } // RIGHT SIDE
+            else if (RightSide.SelectedPath != null)
+            {
+                source = Path.Combine(RightSide.CurrentPath, RightSide.GetSelectedPath());
+                target = Path.GetFullPath(LeftSide.CurrentPath);
             }
 
-            copyModel.Copy(source, target);
+
+            copyModel.Copy(source, target); // Model -> CopyModel.cs 
+
+            UpdateView(); //UpdateView 
         }
 
         private bool CopyCanExecute(object obj)
         {
             // check if previous clicked
+            if (LeftSide.SelectedPath == null && RightSide.SelectedPath == null) return false;
             if (LeftSide.SelectedPath == Resources.PreviousDirectory || RightSide.SelectedPath == Resources.PreviousDirectory) return false;
             return true;
         }
@@ -91,6 +102,13 @@ namespace mini_tc.ViewModel
             if (LeftSide.SelectedPath != null && RightSide.SelectedPath != null)
                 LeftSide.SelectedPath = null;
         }
+
+        private void UpdateView()
+        {
+            LeftSide.UpdateCurrentPathContent();
+            RightSide.UpdateCurrentPathContent();
+        }
+
         #endregion
     }
 }

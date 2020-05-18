@@ -115,6 +115,7 @@ namespace mini_tc.View
         #endregion
 
         #region Commands
+        //IComands
         public ICommand DropDownOpen
         {
             get { 

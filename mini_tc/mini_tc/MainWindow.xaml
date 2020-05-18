@@ -12,8 +12,8 @@
         Title="Piotr Sobieszczyk miniCommander" Height="620" Width="1100">
 
     <Window.Resources>
-        
-        <vm:MainViewModel x:Key="mainViewModel"/>
+     
+        <vm:MainViewModel x:Key="MainViewModel"/>
         
     </Window.Resources>
 
@@ -35,14 +35,14 @@
             
             <!--LEFT SIDE-->
             <controls:SidePanel Grid.Column="0" CurrentPath="{Binding LeftSide.CurrentPath}" AvailableDrives="{Binding LeftSide.AvailableDrives}" 
-                              CurrentPathContent="{Binding LeftSide.CurrentPathContent}" SelectedPath="{Binding LeftSide.SelectedPath,Mode=TwoWay}" 
-                              SelectedDrive="{Binding LeftSide.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding LeftSide.DropDownOpen}" 
+                              CurrentPathContent="{Binding LeftSide.CurrentPathContent, Mode=TwoWay}" SelectedPath="{Binding LeftSide.SelectedPath,Mode=TwoWay}" 
+                              SelectedDrive="{Binding LeftSide.SelectedDrive, Mode=TwoWay}" DropDownOpen="{Binding LeftSide.DropDownOpen}" 
                               SelectionChange="{Binding LeftSelectionChange}" ItemDoubleClick="{Binding LeftSide.ItemDoubleClick}" 
                               ItemEnterKey="{Binding LeftSide.ItemEnterKey}"/>
 
             <!--RIGHT SIDE-->
             <controls:SidePanel Grid.Column="1" CurrentPath="{Binding RightSide.CurrentPath}" AvailableDrives="{Binding RightSide.AvailableDrives}" 
-                              CurrentPathContent="{Binding RightSide.CurrentPathContent}" SelectedPath="{Binding RightSide.SelectedPath,Mode=TwoWay}" 
+                              CurrentPathContent="{Binding RightSide.CurrentPathContent, Mode=TwoWay}" SelectedPath="{Binding RightSide.SelectedPath,Mode=TwoWay}" 
                               SelectedDrive="{Binding RightSide.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding RightSide.DropDownOpen}" 
                               SelectionChange="{Binding RightSelectionChange}" ItemDoubleClick="{Binding RightPanel.ItemDoubleClick}" 
                               ItemEnterKey="{Binding RightSide.ItemEnterKey}"/>
