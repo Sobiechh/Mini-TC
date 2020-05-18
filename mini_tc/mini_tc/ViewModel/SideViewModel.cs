@@ -15,6 +15,7 @@ namespace mini_tc.ViewModel
 
     class SideViewModel : BaseViewModel
     {
+        #region Properties
         private string _currentPath;
         public string CurrentPath
         {
@@ -51,16 +52,23 @@ namespace mini_tc.ViewModel
                 UpdateCurrentPathContent();
             }
         }
+        #endregion
 
+
+        #region Constructor
         public SideViewModel()
         {
             //get drivers
             AvailableDrives = new ObservableCollection<string>(Directory.GetLogicalDrives().ToList());
             Console.WriteLine(AvailableDrives);
-            //any func
+            //any func + lambda
+            //x.Contains("C")).First() always disk containt C at first
             SelectedDrive = AvailableDrives.Any(x => x.Contains("s ")) ? AvailableDrives.Where(x => x.Contains("C")).First() : AvailableDrives.First();
+            Console.WriteLine(SelectedDrive);
             UpdateCurrentPathContent();
         }
+        #endregion
+
 
         private void UpdateCurrentPathContent()
         {
@@ -69,6 +77,7 @@ namespace mini_tc.ViewModel
             CurrentPathContent = new ObservableCollection<string>();
             foreach (var dir in Directory.GetDirectories(SelectedDrive)) //each dir add
             {
+                //test with all <D> prefix
                 CurrentPathContent.Add("<D> " + Path.GetFileName(dir));
             }
             foreach (var file in Directory.GetFiles(SelectedDrive))

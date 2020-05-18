@@ -4,44 +4,65 @@ namespace mini_tc.ViewModel
 {
     using Base;
     using System.Windows.Input;
+
     class MainViewModel : BaseViewModel
     {
-        private SideViewModel _source;
-        public SideViewModel Source
+        #region Prop-s
+        private SideViewModel _leftPanel;
+        public SideViewModel LeftPanel
         {
-            get { return _source; }
-            set { _source = value; OnPropertyChanged(nameof(Source)); }
+            get { return _leftPanel; }
+            set { _leftPanel = value; OnPropertyChanged(nameof(LeftPanel)); }
         }
 
-        private SideViewModel _target;
-        public SideViewModel Target
+        private SideViewModel _rightPanel;
+        public SideViewModel RightPanel
         {
-            get { return _target; }
-            set { _target = value; OnPropertyChanged(nameof(Target)); }
+            get { return _rightPanel; }
+            set { _rightPanel = value; OnPropertyChanged(nameof(RightPanel)); }
         }
+        #endregion
 
+        #region Constructor
         public MainViewModel()
         {
-            Source = new SideViewModel();
-            Target = new SideViewModel();
+            _leftPanel = new SideViewModel();
+            _rightPanel = new SideViewModel();
 
             Copy = new RelayCommand(CopyExecute, CopyCanExecute);
+            LeftSelectionChange = new RelayCommand(LeftSelectionChangeExecute, arg => true);
+            RightSelectionChange = new RelayCommand(RightSelectionChangeExecute, arg => true);
         }
+        #endregion
 
-        //copy files
+        #region Commands
         public ICommand Copy { get; set; }
+        public ICommand LeftSelectionChange { get; set; }
+        public ICommand RightSelectionChange { get; set; }
 
-
-        //console view
+        //tests
         private void CopyExecute(object obj)
         {
-            Console.WriteLine(Source.SelectedDrive);
+            //Console.WriteLine("From : " + LeftPanel.SelectedPath);
+            //Console.WriteLine("Where : " + RightPanel.SelectedPath);
         }
 
-        //help with copy
-        private bool CopyCanExecute(object obj) 
+        private bool CopyCanExecute(object obj)
         {
-            return Source.SelectedPath == null; 
+            return LeftPanel.SelectedPath != null || RightPanel.SelectedPath != null;
         }
+
+        private void LeftSelectionChangeExecute(object obj)
+        {
+            if (RightPanel.SelectedPath != null && LeftPanel.SelectedPath != null)
+                RightPanel.SelectedPath = null;
+        }
+
+        private void RightSelectionChangeExecute(object obj)
+        {
+            if (LeftPanel.SelectedPath != null && RightPanel.SelectedPath != null)
+                LeftPanel.SelectedPath = null;
+        }
+        #endregion
     }
 }

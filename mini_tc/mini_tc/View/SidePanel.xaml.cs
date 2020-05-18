@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.IO;
-using System.Xaml;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace mini_tc.View
 {
+    //interface (cur_path,drivers,path content)
     interface ISidePanel
     {
         string CurrentPath { get; set; }
@@ -23,6 +20,7 @@ namespace mini_tc.View
     /// </summary>
     public partial class SidePanel : UserControl
     {
+        #region Dependency
         protected static readonly DependencyProperty CurrentPathProperty = DependencyProperty.Register(
             nameof(CurrentPath), 
             typeof(string), 
@@ -53,6 +51,35 @@ namespace mini_tc.View
             typeof(SidePanel), 
             new PropertyMetadata(null));
 
+        //ICommands
+
+        protected static readonly DependencyProperty SelectionChangeProperty = DependencyProperty.Register(
+            nameof(SelectionChange),
+            typeof(ICommand),
+            typeof(SidePanel),
+            new PropertyMetadata(null));
+
+        protected static readonly DependencyProperty ItemDoubleClickProperty = DependencyProperty.Register(
+            nameof(ItemDoubleClick),
+            typeof(ICommand),
+            typeof(SidePanel),
+            new PropertyMetadata(null));
+
+        protected static readonly DependencyProperty DropDownOpenProperty = DependencyProperty.Register(
+            nameof(DropDownOpen),
+            typeof(ICommand),
+            typeof(SidePanel),
+            new PropertyMetadata(null));
+
+        protected static readonly DependencyProperty ItemEnterKeyProperty = DependencyProperty.Register(
+            nameof(ItemEnterKey),
+            typeof(ICommand),
+            typeof(SidePanel),
+            new PropertyMetadata(null));
+
+        #endregion
+
+        #region Prop
         public string CurrentPath
         {
             get { return (string)GetValue(CurrentPathProperty); }
@@ -78,10 +105,43 @@ namespace mini_tc.View
             get { return (string)GetValue(SelectedDriveProperty); }
             set { SetValue(SelectedDriveProperty, value); }
         }
+        #endregion
 
+        #region constr
         public SidePanel()
         {
             InitializeComponent();
         }
+        #endregion
+
+        #region Commands
+        public ICommand DropDownOpen
+        {
+            get { 
+                return (ICommand)GetValue(DropDownOpenProperty);
+            }
+            set {
+                SetValue(DropDownOpenProperty, value);
+            }
+        }
+
+        public ICommand SelectionChange
+        {
+            get { return (ICommand)GetValue(SelectionChangeProperty); }
+            set { SetValue(SelectionChangeProperty, value); }
+        }
+        
+        public ICommand ItemDoubleClick
+        {
+            get { return (ICommand)GetValue(ItemDoubleClickProperty); }
+            set { SetValue(ItemDoubleClickProperty, value); }
+        }
+        
+        public ICommand ItemEnterKey
+        {
+            get { return (ICommand)GetValue(ItemEnterKeyProperty); }
+            set { SetValue(ItemEnterKeyProperty, value); }
+        }
+        #endregion
     }
 }
