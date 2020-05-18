@@ -23,7 +23,6 @@ namespace mini_tc
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new ViewModel();
         }
     }
 }

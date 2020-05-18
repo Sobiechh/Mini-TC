@@ -79,6 +79,24 @@ namespace mini_tc.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu &lt;D&gt;.
+        /// </summary>
+        public static string DriveSign {
+            get {
+                return ResourceManager.GetString("DriveSign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Copy.
+        /// </summary>
+        public static string FileCopy {
+            get {
+                return ResourceManager.GetString("FileCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu ....
         /// </summary>
         public static string ParrentDirectory {
@@ -93,15 +111,6 @@ namespace mini_tc.Properties {
         public static string PathLabel {
             get {
                 return ResourceManager.GetString("PathLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu string.
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

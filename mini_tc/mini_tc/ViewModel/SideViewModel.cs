@@ -54,8 +54,10 @@ namespace mini_tc.ViewModel
 
         public SideViewModel()
         {
+            //get drivers
             AvailableDrives = new ObservableCollection<string>(Directory.GetLogicalDrives().ToList());
             Console.WriteLine(AvailableDrives);
+            //any func
             SelectedDrive = AvailableDrives.Any(x => x.Contains("s ")) ? AvailableDrives.Where(x => x.Contains("C")).First() : AvailableDrives.First();
             UpdateCurrentPathContent();
         }
@@ -65,13 +67,13 @@ namespace mini_tc.ViewModel
             //help
             //Console.WriteLine(SelectedDrive);
             CurrentPathContent = new ObservableCollection<string>();
-            foreach (var dir in Directory.GetDirectories(SelectedDrive))
+            foreach (var dir in Directory.GetDirectories(SelectedDrive)) //each dir add
             {
                 CurrentPathContent.Add("<D> " + Path.GetFileName(dir));
             }
             foreach (var file in Directory.GetFiles(SelectedDrive))
             {
-                CurrentPathContent.Add(Path.GetFileName(file));
+                CurrentPathContent.Add(Path.GetFileName(file)); //each file add
             }
         }
 
