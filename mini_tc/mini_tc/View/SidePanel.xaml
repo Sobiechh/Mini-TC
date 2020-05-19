@@ -12,11 +12,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <!-- only behaviors works  /\ -->
     <StackPanel Margin="5">
+
         <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
-            <!-- Path binding -->
-            <Label Content="{Binding Source={x:Static resx:Resources.PathLabel}}"/>
-            
-            <TextBox VerticalContentAlignment="Center" IsReadOnly="True" Width="500" Text="{Binding CurrentPath,ElementName=SidePanelControl}"/>
+                <!-- Path label -->
+                <Label Content="{Binding Source={x:Static resx:Resources.PathLabel}}"/>
+                <!-- Path binding -->
+                <TextBox VerticalContentAlignment="Center" IsReadOnly="True" Width="276" Text="{Binding CurrentPath,ElementName=SidePanelControl}"/>
         </StackPanel>
 
         <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">

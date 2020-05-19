@@ -93,7 +93,7 @@ namespace mini_tc.ViewModel
             if (SelectedPath == null) return;//unless exception
             if (SelectedPath.StartsWith(Resources.DriveSign))
             {
-                CurrentPath = Path.Combine(CurrentPath, SelectedPath.Substring(3)); //delete 4 chars path
+                CurrentPath = Path.Combine(CurrentPath, SelectedPath.Substring(3)); //delete 3 chars path
                 UpdateCurrentPathContent();
             }
             else if (SelectedPath == Resources.PreviousDirectory) //back
@@ -159,7 +159,7 @@ namespace mini_tc.ViewModel
             return dirs_list;
         }
 
-        //get path with lamda func, substring del (<C/D/E>)
+        //get path with lamda func, substring del <D>
         public string GetSelectedPath() => SelectedPath.StartsWith(Resources.DriveSign) ? SelectedPath.Substring(Resources.DriveSign.Length) : SelectedPath;
 
         #endregion

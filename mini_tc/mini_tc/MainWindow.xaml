@@ -9,15 +9,15 @@
         xmlns:resx="clr-namespace:mini_tc.Properties"
         xmlns:controls="clr-namespace:mini_tc.View"
         mc:Ignorable="d"
-        Title="Piotr Sobieszczyk miniCommander" Height="620" Width="1100">
+        Title="Piotr Sobieszczyk- mini commander (kolor dodany bo było za szaro)" Height="620" Width="1100">
 
     <Window.Resources>
-     
+
         <vm:MainViewModel x:Key="MainViewModel"/>
-        
+
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="DodgerBlue">
         <Grid.DataContext>
             <vm:MainViewModel/>
         </Grid.DataContext>
@@ -27,7 +27,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -38,15 +38,18 @@
                               CurrentPathContent="{Binding LeftSide.CurrentPathContent, Mode=TwoWay}" SelectedPath="{Binding LeftSide.SelectedPath,Mode=TwoWay}" 
                               SelectedDrive="{Binding LeftSide.SelectedDrive, Mode=TwoWay}" DropDownOpen="{Binding LeftSide.DropDownOpen}" 
                               SelectionChange="{Binding LeftSelectionChange}" ItemDoubleClick="{Binding LeftSide.ItemDoubleClick}" 
-                              ItemEnterKey="{Binding LeftSide.ItemEnterKey}"/>
+                              ItemEnterKey="{Binding LeftSide.ItemEnterKey}"
+                                />
 
             <!--RIGHT SIDE-->
             <controls:SidePanel Grid.Column="1" CurrentPath="{Binding RightSide.CurrentPath}" AvailableDrives="{Binding RightSide.AvailableDrives}" 
                               CurrentPathContent="{Binding RightSide.CurrentPathContent, Mode=TwoWay}" SelectedPath="{Binding RightSide.SelectedPath,Mode=TwoWay}" 
                               SelectedDrive="{Binding RightSide.SelectedDrive,Mode=TwoWay}" DropDownOpen="{Binding RightSide.DropDownOpen}" 
-                              SelectionChange="{Binding RightSelectionChange}" ItemDoubleClick="{Binding RightPanel.ItemDoubleClick}" 
+                              SelectionChange="{Binding RightSelectionChange}" ItemDoubleClick="{Binding RightSide.ItemDoubleClick}" 
                               ItemEnterKey="{Binding RightSide.ItemEnterKey}"/>
         </Grid>
+        <!-- ItemDoubleClick="{Binding RightSide.ItemDoubleClick}  -  there was a problem omg -->
+
 
         <Button x:Name="CopyButton" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Height="25" Width="60" Margin="10"
                 FontFamily="Consolas" FontSize="13"
