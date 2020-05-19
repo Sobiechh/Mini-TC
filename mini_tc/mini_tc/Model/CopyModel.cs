@@ -27,7 +27,8 @@ namespace mini_tc.Model
             if (Directory.GetFiles(target).Select(x => Path.GetFileName(x)).Contains(Path.GetFileName(source)))
             {
                 int count = Directory.GetFiles(target).Select(x => Path.GetFileName(x)).Where(x => x.StartsWith(Path.GetFileNameWithoutExtension(source))).Count();
-                string fileName = Path.GetFileNameWithoutExtension(source) + " - " + Resources.FileCopy + count + Path.GetExtension(source);
+                string fileName = Path.GetFileNameWithoutExtension(source) +" - "+ Resources.FileCopy + count + Path.GetExtension(source);
+                Console.WriteLine(fileName+ "----------------------------------");
                 target = Path.Combine(target, fileName);
             }
             else
@@ -37,9 +38,13 @@ namespace mini_tc.Model
             try
             {
                 File.Copy(source, target);
-            }
+            } //no access
             catch (UnauthorizedAccessException) { return; }
         }
 
+        private void DirectoryCopy(string source, string target)
+        {
+            //maybe soon
+        }
     }
 }

@@ -122,6 +122,7 @@ namespace mini_tc.ViewModel
             {
                 CurrentPathContent.Add(Path.GetFileName(file));
             }
+
         }
 
         private List<string> GetFiles(string path) //need current path to detect file location
