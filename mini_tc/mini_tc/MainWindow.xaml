@@ -9,7 +9,7 @@
         xmlns:resx="clr-namespace:mini_tc.Properties"
         xmlns:controls="clr-namespace:mini_tc.View"
         mc:Ignorable="d"
-        Title="Piotr Sobieszczyk- mini commander (kolor dodany bo było za szaro)" Height="620" Width="1100">
+        Title="Piotr Sobieszczyk- mini commander" Height="620" Width="1100">
 
     <Window.Resources>
 
@@ -53,7 +53,7 @@
 
         <Button x:Name="CopyButton" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Height="25" Width="60" Margin="10"
                 FontFamily="Consolas" FontSize="13"
-                Content="{Binding Source={x:Static resx:Resources.ContentCopyButton}}" Command="{Binding Copy}" FontWeight="Bold"/>
+                Content="Copy" Command="{Binding Copy}" FontWeight="Bold"/>
 
     </Grid>
 
