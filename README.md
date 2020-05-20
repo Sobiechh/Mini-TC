@@ -1,3 +1,2 @@
-mini cmd
-
-double click control
+mini total commander
+* double click control
