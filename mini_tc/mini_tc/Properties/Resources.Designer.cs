@@ -61,7 +61,7 @@ namespace mini_tc.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Copy.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Kopia.
         /// </summary>
         public static string ContentCopyButton {
             get {
